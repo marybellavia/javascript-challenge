@@ -1,10 +1,9 @@
-// from data.js
+// getting data from data.js
 var tableData = data;
 
-// Get a reference to the table body
+// creating a reference to the table body
 var tbody = d3.select("tbody");
-
-// BONUS: Refactor to use Arrow Functions!
+// displaiying original table
 data.forEach((ufoReport) => {
   var row = tbody.append("tr");
   Object.entries(ufoReport).forEach(([key, value]) => {
@@ -13,40 +12,39 @@ data.forEach((ufoReport) => {
   });
 });
 
-// Select the button
+// selecting the button
 var button = d3.select("#filter-btn");
-
-// Select the form
+// selecting the form
 var form = d3.select("#form");
-
-// Create event handlers 
+// creating the event handlers
 button.on("click", runFilter);
 form.on("submit",runFilter);
 
+// function to run when button is clicked
 function runFilter() {
-
   // Prevent the page from refreshing
   d3.event.preventDefault();
   
-  // Select the input element and get the raw HTML node
+  // selecting the input element and get the raw HTML node
   var inputElement = d3.select("#datetime");
-
-  // Get the value property of the input element
+  // getting the value of the input element
   var inputValue = inputElement.property("value");
 
-  console.log(inputValue);
-  console.log(tableData);
+  // // logging data to console for debugging
+  // console.log(inputValue);
+  // console.log(tableData);
 
+  // creating filter for datetime
   var filteredData = tableData.filter(tableData => tableData.datetime === inputValue);
 
-  console.log(filteredData);
+  // // logging filter result for debugging
+  // console.log(filteredData);
 
-  // Then, select the table element by class name
+  // selecting the table to remake it
   var newtbody = d3.select("tbody");
-
-  // remove any children from the list to
+  // removing the old info in the table
   newtbody.html("");
-
+  // re-creating the table with only the filtered info
   filteredData.forEach((ufoReport) => {
     var row = tbody.append("tr");
     Object.entries(ufoReport).forEach(([key, value]) => {
