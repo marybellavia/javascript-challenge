@@ -36,41 +36,101 @@ function runFilter() {
 
   console.log(inputDate)
   if (inputDate !== "") {
-      console.log("negative!");
+      var noResults = d3.select("#no-result");
+      noResults.html("");  
+      // creating filter for datetime
+      var filteredData = tableData.filter(tableData => tableData.datetime === inputDate);
+      // selecting the table to remake it
+      var newtbody = d3.select("tbody");
+      // removing the old info in the table
+      newtbody.html("");
+      // re-creating the table with only the filtered info
+      filteredData.forEach((ufoReport) => {
+          var row = tbody.append("tr");
+          Object.entries(ufoReport).forEach(([key, value]) => {
+              var cell = row.append("td");
+              cell.text(value);
+            });
+        });
   }
   else if (inputCity !== "") {
-      console.log("success!");
+      var noResults = d3.select("#no-result");
+      noResults.html("");
+      // creating filter for datetime
+      var filteredData = tableData.filter(tableData => tableData.city === (inputCity.toLowerCase()));
+      // selecting the table to remake it
+      var newtbody = d3.select("tbody");
+      // removing the old info in the table
+      newtbody.html("");
+      // re-creating the table with only the filtered info
+      filteredData.forEach((ufoReport) => {
+          var row = tbody.append("tr");
+          Object.entries(ufoReport).forEach(([key, value]) => {
+              var cell = row.append("td");
+              cell.text(value);
+            });
+        });
   }
   else if (inputState !== "") {
-      console.log("success!");
+      var noResults = d3.select("#no-result");
+      noResults.html("");
+      // creating filter for datetime
+      var filteredData = tableData.filter(tableData => tableData.state === (inputState.toLowerCase()));
+      // selecting the table to remake it
+      var newtbody = d3.select("tbody");
+      // removing the old info in the table
+      newtbody.html("");
+      // re-creating the table with only the filtered info
+      filteredData.forEach((ufoReport) => {
+          var row = tbody.append("tr");
+          Object.entries(ufoReport).forEach(([key, value]) => {
+              var cell = row.append("td");
+              cell.text(value);
+            });
+        });
   }
   else if (inputCountry !== "") {
-      console.log("success!");
+      var noResults = d3.select("#no-result");
+      noResults.html("");
+      // creating filter for datetime
+      var filteredData = tableData.filter(tableData => tableData.country === (inputCountry.toLowerCase()));
+      // selecting the table to remake it
+      var newtbody = d3.select("tbody");
+      // removing the old info in the table
+      newtbody.html("");
+      // re-creating the table with only the filtered info
+      filteredData.forEach((ufoReport) => {
+          var row = tbody.append("tr");
+          Object.entries(ufoReport).forEach(([key, value]) => {
+              var cell = row.append("td");
+              cell.text(value);
+            });
+        });
   }
   else if (inputShape !== "") {
-      console.log("success!");
+      var noResults = d3.select("#no-result");
+      noResults.html("");
+      // creating filter for datetime
+      var filteredData = tableData.filter(tableData => tableData.shape === (inputShape.toLowerCase()));
+      // selecting the table to remake it
+      var newtbody = d3.select("tbody");
+      // removing the old info in the table
+      newtbody.html("");
+      // re-creating the table with only the filtered info
+      filteredData.forEach((ufoReport) => {
+          var row = tbody.append("tr");
+          Object.entries(ufoReport).forEach(([key, value]) => {
+              var cell = row.append("td");
+              cell.text(value);
+            });
+        });
   }
-  // // logging data to console for debugging
-  // console.log(inputValue);
-  // console.log(tableData);
-
-  // creating filter for datetime
-  var filteredData = tableData.filter(tableData => tableData.datetime === inputDate);
-
-  // // logging filter result for debugging
-  // console.log(filteredData);
-
-  // selecting the table to remake it
-  var newtbody = d3.select("tbody");
-  // removing the old info in the table
-  newtbody.html("");
-  // re-creating the table with only the filtered info
-  filteredData.forEach((ufoReport) => {
-    var row = tbody.append("tr");
-    Object.entries(ufoReport).forEach(([key, value]) => {
-      var cell = row.append("td");
-      cell.text(value);
-    });
-  });
+  else {
+      var newtbody = d3.select("tbody");
+      // removing the old info in the table
+      newtbody.html("");
+      var noResults = d3.select("#no-result");
+      noResults.append("h1").text("No search results, try again!");
+  }
 };
 
